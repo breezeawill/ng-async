@@ -10,42 +10,51 @@ import { take } from 'rxjs/operators'
 export class AppComponent {
   duration = 200
   numTimes = 10
+  sub: Subscription
   title = 'ng-async'
 
   executeFirstExample(): void {
-    let sub: Subscription
-
     // stream of events / changes / pieces of data
     const observable: Observable<number> = interval(this.duration).pipe(take(this.numTimes))
 
     // consumer of stream
     const observer: Observer<number> = {
-      complete: () => {
-        // when complete() is invoked, sub is not closed
-        console.log('Complete!', `sub.closed = ${sub.closed}`)
-
-        // no need to unsubscribe()
-        // try {
-        //   console.log('Attempting unsubscribe() from complete()...')
-        //   sub.unsubscribe()
-        // } catch (err) {
-        //   console.log(`Unable to invoke unsubscribe(), err=${err}`)
-        // }
-      },
-      error: (err) => {
-        console.error(err)
-      },
-      next: (val) => {
-        console.log(val)
-      },
+      // must bind() to get proper context for `this`
+      complete: this.handleComplete.bind(this),
+      error: this.handleError,
+      next: this.handleNext,
     }
 
     // begin consumer listening
-    sub = observable.subscribe(observer)
+    this.sub = observable.subscribe(observer)
 
-    // when function is invoked, sub is closed
-    setTimeout(() => {
-      console.log('Timeout!', `sub.closed = ${sub.closed}`)
-    }, this.duration * (this.numTimes + 1))
+    // must bind() to get proper context for `this`
+    setTimeout(this.handleTimeout.bind(this), this.duration * (this.numTimes + 1))
+  }
+
+  // when invoked, sub is not closed
+  handleComplete(): void {
+    console.log('Complete!', `sub.closed = ${this.sub.closed}`)
+
+    // no need to unsubscribe()
+    // try {
+    //   console.log('Attempting unsubscribe() from complete()...')
+    //   sub.unsubscribe()
+    // } catch (err) {
+    //   console.log(`Unable to invoke unsubscribe(), err=${err}`)
+    // }
+  }
+
+  handleError(err: any): void {
+    console.error(err)
+  }
+
+  handleNext(val: any): void {
+    console.log(val)
+  }
+
+  // when invoked, sub is closed
+  handleTimeout(): void {
+    console.log('Timeout!', `sub.closed = ${this.sub.closed}`)
   }
 }
