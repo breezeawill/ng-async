@@ -2,12 +2,13 @@
   "name": "ng-async",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "e2e": "ng e2e",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "ng",
+    "start": "ng serve --open",
+    "start:headless": "ng serve",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
