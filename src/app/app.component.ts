@@ -10,8 +10,8 @@ import { take } from 'rxjs/operators'
 export class AppComponent {
   duration = 200
   numTimes = 10
+  pageHeader = 'Subscription Demo'
   sub: Subscription
-  title = 'ng-async'
 
   executeFirstExample(): void {
     // stream of events / changes / pieces of data
