@@ -1,6 +1,11 @@
 {
+  "author": {
+    "email": "anthony.williams.cs@gmail.com",
+    "name": "Anthony Williams",
+    "url": "https://github.com/breezeawill/ng-async"
+  },
   "name": "ng-async",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "ng build",
     "e2e": "ng e2e",
