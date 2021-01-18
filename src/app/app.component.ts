@@ -45,7 +45,7 @@ export class AppComponent {
     // }
   }
 
-  handleError(err: any): void {
+  private handleError(err: any): void {
     console.error(err)
   }
 
