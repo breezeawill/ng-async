@@ -8,7 +8,8 @@
     "ng": "ng",
     "start": "ng serve --open",
     "start:headless": "ng serve",
-    "test": "ng test"
+    "test": "ng test",
+    "test-cc": "ng test --watch=false --code-coverage"
   },
   "private": true,
   "dependencies": {
