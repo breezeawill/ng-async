@@ -25,6 +25,11 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  /**
+   * Below is a good start on testing, but several problems exist -
+   *     1. handleTimeout(), handleComplete(), and handleNext() are never invoked
+   *     2. we are not accounting for asynchronous behavior (the setTimeout call)
+   */
   // top level describe() is for grouping test blocks by public members (for easy access)
   describe('executeFirstExample()', () => {
     // inform in test output what action is about to take place
@@ -40,4 +45,6 @@ describe('AppComponent', () => {
       })
     })
   })
+
+  
 })
