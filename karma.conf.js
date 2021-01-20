@@ -33,9 +33,9 @@ module.exports = function (config) {
       subdir: '.',
       thresholds: {
         branches: 100,
-        functions: 20,
-        lines: 73,
-        statements: 75
+        functions: 80,
+        lines: 93,
+        statements: 93
       }
     },
     reporters: ['progress', 'kjhtml'],
