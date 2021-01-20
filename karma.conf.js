@@ -26,11 +26,17 @@ module.exports = function (config) {
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/ng-async'),
-      subdir: '.',
       reporters: [
         { type: 'html' },
         { type: 'text-summary' }
-      ]
+      ],
+      subdir: '.',
+      thresholds: {
+        branches: 100,
+        functions: 20,
+        lines: 73,
+        statements: 75
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
