@@ -5,7 +5,7 @@ import { AppComponent } from './app.component'
 describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
-  let mockSetTimeout: jasmine.Spy
+  // let mockSetTimeout: jasmine.Spy
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe('AppComponent', () => {
     })
       .compileComponents()
 
-    mockSetTimeout = spyOn(window, 'setTimeout').and.callFake(jasmine.createSpy() as any)
+    // mockSetTimeout = spyOn(window, 'setTimeout').and.callFake(jasmine.createSpy() as any)
 
     fixture = TestBed.createComponent(AppComponent)
     component = fixture.componentInstance
@@ -32,6 +32,7 @@ describe('AppComponent', () => {
    * Below is a good start on testing, but several problems exist -
    *     1. handleTimeout(), handleComplete(), and handleNext() are never invoked
    *     2. we are not accounting for asynchronous behavior (the setTimeout call)
+   *     3. the mockSetTimeout approach resolves #2, but not #1
    */
   // top level describe() is for grouping test blocks by public members (for easy access)
   describe('executeFirstExample()', () => {
@@ -45,7 +46,7 @@ describe('AppComponent', () => {
       // describe which assertions are about to be made (expectations as a result of the action that took place)
       it('sets sub and invokes setTimeout()', () => {
         expect(component.sub).toBeTruthy()
-        expect(mockSetTimeout).toHaveBeenCalledTimes(1)
+        // expect(mockSetTimeout).toHaveBeenCalledTimes(1)
       })
     })
   })
