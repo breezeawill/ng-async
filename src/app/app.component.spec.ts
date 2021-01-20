@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { AppComponent } from './app.component'
 
@@ -39,9 +39,10 @@ describe('AppComponent', () => {
     // inform in test output what action is about to take place
     describe('when invoked', () => {
       // actually execute whatever action
-      beforeEach(() => {
+      // use waitForAsync to force async code to finish
+      beforeEach(waitForAsync(() => {
         component.executeFirstExample()
-      })
+      }))
 
       // describe which assertions are about to be made (expectations as a result of the action that took place)
       it('sets sub and invokes setTimeout()', () => {
