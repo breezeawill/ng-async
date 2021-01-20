@@ -5,6 +5,7 @@ import { AppComponent } from './app.component'
 describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
+  let mockSetTimeout: jasmine.Spy
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,6 +17,8 @@ describe('AppComponent', () => {
       ],
     })
       .compileComponents()
+
+    mockSetTimeout = spyOn(window, 'setTimeout').and.callFake(jasmine.createSpy() as any)
 
     fixture = TestBed.createComponent(AppComponent)
     component = fixture.componentInstance
@@ -40,11 +43,10 @@ describe('AppComponent', () => {
       })
 
       // describe which assertions are about to be made (expectations as a result of the action that took place)
-      it('sets sub', () => {
+      it('sets sub and invokes setTimeout()', () => {
         expect(component.sub).toBeTruthy()
+        expect(mockSetTimeout).toHaveBeenCalledTimes(1)
       })
     })
   })
-
-  
 })
